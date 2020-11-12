@@ -1,6 +1,8 @@
 # Node.js Firebase API authentication
 
-This repo contains the Firebase authentication API for the React front-end
+This repo contains server side Node.js authentication using Firebase SDK and Firebase Admin SDK using custom user roles.
+Suitable for any client side project with a Firebase back-end requiring server side login.
+
 This API is built using ES6 and compiled with Babel.
 
 # How to install and run
@@ -127,10 +129,11 @@ Error response
 }
 ```
 
-# Notes
+# Considerations
 
 - The route to update the user's role should not be publicy open or should have some mechanisms of protection
 
-- Normally I would not check in the Firebase admin credentials to the repo. That should sit in a secret store like AWS Secret Manager or a CI build pipeline and be injected via `process.ENV` at runtime. But for a coding challenge, it makes it easier to run and evaluate
+- Normally I would not check in the Firebase admin credentials to the repo. That should sit in a secret store like AWS Secret Manager or a CI build pipeline and be injected via `process.ENV` at runtime.
 
 - Live API docs like Swagger or similar would be nice to have
+- GraphQL ?
