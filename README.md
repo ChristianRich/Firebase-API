@@ -1,4 +1,4 @@
-# Eclipx coding challenge: Node.js Firebase API authentication
+# Node.js Firebase API authentication
 
 This repo contains the Firebase authentication API for the React front-end
 This API is built using ES6 and compiled with Babel.
