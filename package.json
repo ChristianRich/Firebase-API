@@ -1,0 +1,39 @@
+{
+  "name": "eclipx-firebase-auth",
+  "version": "1.0.0",
+  "description": "Eclipx Firebase authentication",
+  "scripts": {
+    "start": "npm run build && node ./build/server",
+    "build": "npm run build:clean & ./node_modules/.bin/babel src -d build",
+    "build:clean": "rm -rf ./build",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "10"
+  },
+  "author": "Christian Rich",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/plugin-proposal-decorators": "^7.8.3",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-runtime": "^7.8.3",
+    "@babel/preset-env": "^7.8.6",
+    "@babel/register": "^7.8.6",
+    "@babel/runtime": "^7.8.4",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1"
+  },
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase": "^8.0.1",
+    "firebase-admin": "^9.3.0"
+  }
+}
