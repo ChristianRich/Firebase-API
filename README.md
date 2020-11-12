@@ -21,7 +21,9 @@ PORT=1234 npm start
 ## Build
 
 This command compiles the native ES6 code to ES5.
-Reason being, that I use features like `async/await` which is currently not supported in Node 10 LTS.
+Reason being, that I use features like `async/await` and `import` which is currently not supported in Node 10 LTS.
+
+I do however understand, that later versions of Node may support these features natively and Babel compilation will no longer be required.
 
 ```
 npm run build
