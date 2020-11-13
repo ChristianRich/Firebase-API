@@ -11,7 +11,8 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
 if (process.env.NODE_ENV !== 'production') {
-  app.use(morgan(':method :url :status - :response-time ms'));
+  morgan.token('body', req => JSON.stringify(req.body));
+  app.use(morgan(':method :url :status - :response-time ms  :body'));
 }
 
 app.post('/api/admin_only', async (req, res) => {
