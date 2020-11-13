@@ -1,10 +1,10 @@
 # Node.js server-side Firebase API authentication and user roles
 
-This repo contains Firebase authentication mechanism suitable for any client-side proejct requiring server side login.
+This repo contains Firebase authentication mechanisms suitable for any client-side project requiring server side login with assigned user roles.
 
-This API is built using ES6 and compiled with Babel.
+This API is built using ES6 and transpiled with Babel.
 
-# How to install and run
+# Install and run
 
 ### Add required ENV runtime variables
 
