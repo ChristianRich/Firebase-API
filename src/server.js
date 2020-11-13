@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
+import morgan from 'morgan';
 import { login, updateUserRole } from './services/firebase';
 
 const PORT = process.env.PORT || 3001;
@@ -8,6 +9,10 @@ const app = express();
 
 app.use(cors({ origin: true }));
 app.use(bodyParser.json());
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(morgan(':method :url :status - :response-time ms'));
+}
 
 app.post('/api/admin_only', async (req, res) => {
   try {
