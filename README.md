@@ -141,6 +141,10 @@ Error response
 
 ## Verify JWT
 
+```
+POST /api/token/verify
+```
+
 This route will verify a previously issued Firebase JWT for a successful login attempt
 
 ```
