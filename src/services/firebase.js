@@ -39,6 +39,14 @@ const getUserRole = async uid => {
 };
 
 /**
+ * Verify Firebase issued JWT
+ * https://firebase.google.com/docs/auth/admin/verify-id-tokens#web
+ * @param {string} idToken
+ * @returns {void|Error}
+ */
+const verifyToken = async idToken => admin.auth().verifyIdToken(idToken);
+
+/**
  * Update a user's role in Firebase's custom user claims
  * Useful for e.g upgrading a user's account after purchasing a premium product or setting account wide admin rights from a custom UI
  * https://firebase.google.com/docs/auth/admin/custom-claims
@@ -82,4 +90,4 @@ const login = async (email, password) => {
   }
 };
 
-export { getUserByEmail, login, updateUserRole };
+export { getUserByEmail, login, updateUserRole, verifyToken };
