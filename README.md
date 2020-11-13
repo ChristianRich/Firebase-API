@@ -139,6 +139,30 @@ Error response
 }
 ```
 
+## Verify JWT
+
+This route will verify a previously issued Firebase JWT for a successful login attempt
+
+```
+curl --location --request POST 'http://localhost:3001/api/token/verify' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "idToken": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjJmOGI1NTdjMWNkMWUxZWM2ODBjZTkyYWFmY2U0NTIxMWUxZTRiNDEiLCJ0eXAiOiJKV1QifQ.eyJhZG1pbiI6dHJ1ZSwiaXNzIjoiaHR0cHM6Ly9zZWN1cmV0b2tlbi5nb29nbGUuY29tL2VjbGlweC00ZmIwZiIsImF1ZCI6ImVjbGlweC00ZmIwZiIsImF1dGhfdGltZSI6MTYwNTI1MzQwOSwidXNlcl9pZCI6Ing5NnluREMwUUhVc2NSVXgxOUxCMFplUXQ4NTMiLCJzdWIiOiJ4OTZ5bkRDMFFIVXNjUlV4MTlMQjBaZVF0ODUzIiwiaWF0IjoxNjA1MjUzNDEwLCJleHAiOjE2MDUyNTcwMTAsImVtYWlsIjoiYWRtaW5AdGVzdC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiYWRtaW5AdGVzdC5jb20iXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.k-6a9mDUSmdBEjr3WLoNdTXtKMgezMEdQTt3PuIihWLAJR3FnN-LoLZ6KOF_FjXks6aO7ug9VBy8i5SexYWc4JC6ErQJ6z1lmTQuVzjpsqWk-WDNI9Feedab8tWnkCky8U5Xk_FDHqA0ErNmCb72Xt7vLFeleQJ28MYIPI97JD1Y7lkty4wvyXYiV2C-pSuxhwiIhXjmvOUPyhZiUlc-0J2FcoRSt_2zdxgF2cY9S0YaTcKWk77QXAsflq2lxGhp88QuKdQWOq_9zMhdlIQzT0J3vcZhh4W5k23DrRodqR8wu05_mQQGu-PETt2hQa8gRcBaxREXYVGPgDGtV2__Bw"
+}'
+```
+
+Success response
+`200 OK`
+
+Error response `401`
+
+```
+{
+    "code": "auth/argument-error",
+    "message": "Decoding Firebase ID token failed. Make sure you passed the entire string JWT which represents an ID token. See https://firebase.google.com/docs/auth/admin/verify-id-tokens for details on how to retrieve an ID token."
+}
+```
+
 # Notes
 
 - The route to update the user's role should not be publicy open or should have some mechanisms of protection (e.g admin API key, JWT, IP range)
