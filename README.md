@@ -1,11 +1,23 @@
-# Node.js Firebase API authentication
+# Node.js server-side Firebase API authentication and user roles
 
-This repo contains server side Node.js authentication using Firebase SDK and Firebase Admin SDK using custom user roles.
-Suitable for any client side project with a Firebase back-end requiring server side login.
+This repo contains Firebase authentication mechanism suitable for any client-side proejct requiring server side login.
 
 This API is built using ES6 and compiled with Babel.
 
 # How to install and run
+
+### Add required ENV runtime variables
+
+Please see `.env.sample`.
+Add a new `.env` file in the root directory and add the following secret private key (replace value with the real key from Firebase admin console):
+
+```
+FIREBASE_ADMIN_PRIVATE_KEY="-----BEGIN PRIVATE KEY-----\n1234567890\n-----END PRIVATE KEY-----\n"
+```
+
+This key is required to interact with Firebase admin (e.g set user roles and look up users by email).
+
+### Install dependencies and start
 
 ```
 npm i
@@ -23,9 +35,7 @@ PORT=1234 npm start
 ## Build
 
 This command compiles the native ES6 code to ES5.
-Reason being, that I use features like `async/await` and `import` which is currently not supported in Node 10 LTS.
-
-I do however understand, that later versions of Node may support these features natively and Babel compilation will no longer be required.
+Reason being, that I use features like `async/await` and `import` which is not fully supported in latest Node LTS.
 
 ```
 npm run build
@@ -129,11 +139,9 @@ Error response
 }
 ```
 
-# Considerations
+# Notes
 
-- The route to update the user's role should not be publicy open or should have some mechanisms of protection
-
-- Normally I would not check in the Firebase admin credentials to the repo. That should sit in a secret store like AWS Secret Manager or a CI build pipeline and be injected via `process.ENV` at runtime.
+- The route to update the user's role should not be publicy open or should have some mechanisms of protection (e.g admin API key, JWT, IP range)
 
 - Live API docs like Swagger or similar would be nice to have
-- GraphQL ?
+- Apollo GraphQL implementation rather than REST?

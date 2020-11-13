@@ -4,7 +4,15 @@ import firebaseConfig from '../../firebaseConfig.json';
 import serviceAccount from '../../firebaseAdminCredentials.json';
 import CustomError from '../util/customError';
 
+const { FIREBASE_ADMIN_PRIVATE_KEY } = process.env;
+
+if (!FIREBASE_ADMIN_PRIVATE_KEY) {
+  throw new Error('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY. Please add to .env');
+}
+
 firebase.initializeApp(firebaseConfig);
+
+serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY;
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
