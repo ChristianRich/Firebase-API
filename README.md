@@ -41,6 +41,12 @@ Reason being, that I use features like `async/await` and `import` which is not f
 npm run build
 ```
 
+## Unit tests
+
+```
+npm test
+```
+
 # Available routes
 
 ## Login

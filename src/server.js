@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import morgan from 'morgan';
-import { login, updateUserRole, verifyToken } from './services/firebase';
+import Firebase from './services/firebase';
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -15,13 +15,15 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan(':method :url :status - :response-time ms  :body'));
 }
 
+const firebase = new Firebase();
+
 /**
- * Login
+ * Login admin user
  */
 app.post('/api/admin_only', async (req, res) => {
   try {
     const { email, password } = req.body;
-    const adminUser = await login(email, password);
+    const adminUser = await firebase.login(email, password);
     res.json(adminUser);
   } catch (e) {
     res.status(e.status).json(e);
@@ -29,12 +31,12 @@ app.post('/api/admin_only', async (req, res) => {
 });
 
 /**
- * Verify Firebase issued JWT from previous successful login flow
+ * Verify Firebase JWT
  */
 app.post('/api/token/verify', async (req, res) => {
   try {
     const { idToken } = req.body;
-    await verifyToken(idToken);
+    await firebase.verifyToken(idToken);
     res.end();
   } catch (e) {
     res.status(401).json(e);
@@ -48,7 +50,7 @@ app.post('/api/token/verify', async (req, res) => {
 app.patch('/api/user/role', async (req, res) => {
   try {
     const { email, isAdmin } = req.body;
-    await updateUserRole(email, isAdmin);
+    await firebase.updateUserRole(email, isAdmin);
     res.end();
   } catch (e) {
     res.status(401).json(e);
