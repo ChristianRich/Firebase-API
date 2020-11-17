@@ -4,21 +4,17 @@ import firebaseConfig from '../../firebaseConfig.json';
 import serviceAccount from '../../firebaseAdminCredentials.json';
 import CustomError from '../util/customError';
 
-// Insure the real Firebase instance is not initialised during test runs
+// Ensure the real Firebase instance is not initialised during test runs
 if (process.env.NODE_ENV !== 'test') {
   firebase.initializeApp(firebaseConfig);
   const { FIREBASE_ADMIN_PRIVATE_KEY } = process.env;
 
   if (!FIREBASE_ADMIN_PRIVATE_KEY) {
-    console.warn('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY'); // eslint-disable-line no-console
+    throw new Error('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY');
   }
 
-  console.log('FIREBASE_ADMIN_PRIVATE_KEY');
-  console.log(FIREBASE_ADMIN_PRIVATE_KEY);
-
-  console.log('FIREBASE_ADMIN_PRIVATE_KEY replaced');
-  console.log(FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n'));
-
+  // Inject PEM key and replace linebreaks
+  // https://stackoverflow.com/questions/50299329/node-js-firebase-service-account-private-key-wont-parse
   serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n');
 
   admin.initializeApp({

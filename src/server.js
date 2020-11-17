@@ -15,12 +15,11 @@ app.use(morgan(':method :url :status - :response-time ms  :body'));
 const firebase = new Firebase();
 
 /**
- * Login admin user
+ * Health check
  */
-app.get('/', async (req, res) => {
+app.get('/', (req, res) => {
   return res.json({
     time: new Date().toISOString(),
-    env: process.env, // Just for testing, would never include this is a production app ;-)
   });
 });
 
