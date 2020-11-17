@@ -4,8 +4,6 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import Firebase from './services/firebase';
 
-console.log('server.js'); // eslint-disable-line no-console
-
 const app = express();
 
 app.use(cors({ origin: true }));

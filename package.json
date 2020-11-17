@@ -4,7 +4,7 @@
   "description": "Server-side Firebase authentication and user roles",
   "scripts": {
     "start": "npm run build && node ./build/index",
-    "build": "npm run build:clean & ./node_modules/.bin/babel src -d build",
+    "build": "npm run build:clean & babel src -d build",
     "build:clean": "rm -rf ./build",
     "test": "NODE_ENV=test mocha --require @babel/register ./src/**/*.spec.js"
   },
