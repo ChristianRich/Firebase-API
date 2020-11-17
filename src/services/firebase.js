@@ -10,7 +10,7 @@ if (process.env.NODE_ENV !== 'test') {
   const { FIREBASE_ADMIN_PRIVATE_KEY } = process.env;
 
   if (!FIREBASE_ADMIN_PRIVATE_KEY) {
-    throw new Error('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY. Please add to .env');
+    console.warn('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY'); // eslint-disable-line no-console
   }
 
   serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY;

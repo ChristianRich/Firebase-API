@@ -4,16 +4,15 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import Firebase from './services/firebase';
 
-const PORT = process.env.PORT || 3001;
+console.log('server.js'); // eslint-disable-line no-console
+
 const app = express();
 
 app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
-if (process.env.NODE_ENV !== 'production') {
-  morgan.token('body', req => JSON.stringify(req.body));
-  app.use(morgan(':method :url :status - :response-time ms  :body'));
-}
+morgan.token('body', req => JSON.stringify(req.body));
+app.use(morgan(':method :url :status - :response-time ms  :body'));
 
 const firebase = new Firebase();
 
@@ -67,4 +66,8 @@ app.patch('/api/user/role', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`App listening at http://localhost:${PORT}`)); // eslint-disable-line no-console
+const port = process.env.PORT || 8080;
+
+app.listen(port, () => {
+  console.log('Express server listening on port', port); // eslint-disable-line no-console
+});
