@@ -16,7 +16,10 @@ if (process.env.NODE_ENV !== 'test') {
   console.log('FIREBASE_ADMIN_PRIVATE_KEY');
   console.log(FIREBASE_ADMIN_PRIVATE_KEY);
 
-  serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY;
+  console.log('FIREBASE_ADMIN_PRIVATE_KEY replaced');
+  console.log(FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n'));
+
+  serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY.replace(/\\n/g, '\n');
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
