@@ -13,6 +13,9 @@ if (process.env.NODE_ENV !== 'test') {
     console.warn('Missing required runtime ENV variable FIREBASE_ADMIN_PRIVATE_KEY'); // eslint-disable-line no-console
   }
 
+  console.log('FIREBASE_ADMIN_PRIVATE_KEY');
+  console.log(FIREBASE_ADMIN_PRIVATE_KEY);
+
   serviceAccount.private_key = FIREBASE_ADMIN_PRIVATE_KEY;
 
   admin.initializeApp({
