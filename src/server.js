@@ -20,6 +20,16 @@ const firebase = new Firebase();
 /**
  * Login admin user
  */
+app.get('/', async (req, res) => {
+  return res.json({
+    time: new Date().toISOString(),
+    env: process.env, // Just for testing, would never include this is a production app ;-)
+  });
+});
+
+/**
+ * Login admin user
+ */
 app.post('/api/admin_only', async (req, res) => {
   try {
     const { email, password } = req.body;
